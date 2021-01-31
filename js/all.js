@@ -22,8 +22,8 @@ const draw = function (){
       ctx.lineTo(endXY[0], endXY[1]);
       ctx.strokeStyle = '#ffa500'
       ctx.lineWidth = 5
-      ctx.stroke() 
-      base64temp = drawDisplay.toDataURL()
+      ctx.stroke(); 
+      base64temp = drawDisplay.toDataURL();
       jsImg.src = base64temp 
     }
   }
@@ -37,11 +37,13 @@ const draw = function (){
   // 滑鼠放開為終點
   this.mouseUp = () => {
     endXY = []
-    step++
-    if (step < drawTemp.length) drawTemp.length = step
-    drawTemp.push(base64temp)
     drawDisplay.removeEventListener('mousemove', vm.mouseMove) 
     drawDisplay.removeEventListener('mouseup', vm.mouseUp) 
+    step++
+    if (step < drawTemp.length) {
+      drawTemp.length = step
+    }
+    drawTemp.push(base64temp)
   }
 
   // 滑鼠按下為起點
@@ -53,21 +55,25 @@ const draw = function (){
   }
   this.undo = () => {
     let lastDraw  = new Image()
-    if (step >= 0) step--
-    lastDraw.src = drawTemp[step]
-    jsImg.src = drawTemp[step]
-    ctx.beginPath()
-    ctx.clearRect(0,0, 700, 500)
-    ctx.drawImage(lastDraw, 0, 0)
+    if (step > 0) {
+      step--
+      lastDraw.src = drawTemp[step]
+      jsImg.src = drawTemp[step]
+      ctx.beginPath();
+      ctx.clearRect(0,0, 700, 500)
+      ctx.drawImage(lastDraw, 0, 0)
+    }
   }
   this.redo = () => {
     let lastDraw  = new Image()
-    if (step < drawTemp.length) step++
-    lastDraw.src = drawTemp[step]
-    jsImg.src = drawTemp[step]
-    ctx.beginPath()
-    ctx.clearRect(0,0, 700, 500)
-    ctx.drawImage(lastDraw, 0, 0)
+    if (step < drawTemp.length - 1) {
+      step++
+      lastDraw.src = drawTemp[step]
+      jsImg.src = drawTemp[step]
+      ctx.beginPath();
+      ctx.clearRect(0,0, 700, 500)
+      ctx.drawImage(lastDraw, 0, 0)
+    }
   }
   this.clearAll = () => {
     ctx.clearRect(0,0, 700, 500)
