@@ -7,7 +7,7 @@ const draw = function (){
   let startXY = []
   let endXY = []
   let colors = []
-  let lineWidth = []
+  let linewidth = []
   let drawTemp = []
   let base64Temp = ''
   let step = -1
@@ -58,7 +58,6 @@ const draw = function (){
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
       ctx.clearRect(0,0, 700, 500)
-      // 重新繪製圖形時，必須重新讀取
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
@@ -80,6 +79,9 @@ const draw = function (){
     ctx.clearRect(0,0, 700, 500)
     step = 0
     drawTemp = []
+  }
+  this.selectColor = (e) => {
+    
   }
 }
   
