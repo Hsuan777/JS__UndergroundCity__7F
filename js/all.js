@@ -2,15 +2,14 @@ const drawDisplay = document.querySelector('.js-draw');
 const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
 const drawClearAll = document.querySelector('.js-clearAll');
-const jsImg = document.querySelector('.jsImg');
 
 const draw = function (){
   let startXY = []
   let endXY = []
   let colors = []
-  let linewidth = []
+  let lineWidth = []
   let drawTemp = []
-  let base64temp = ''
+  let base64Temp = ''
   let step = -1
   let vm = this 
   let ctx = drawDisplay.getContext('2d');
@@ -23,8 +22,7 @@ const draw = function (){
       ctx.strokeStyle = '#ffa500'
       ctx.lineWidth = 5
       ctx.stroke(); 
-      base64temp = drawDisplay.toDataURL();
-      jsImg.src = base64temp 
+      base64Temp = drawDisplay.toDataURL();
     }
   }
   // 滑鼠經過的所有座標
@@ -43,7 +41,7 @@ const draw = function (){
     if (step < drawTemp.length) {
       drawTemp.length = step
     }
-    drawTemp.push(base64temp)
+    drawTemp.push(base64Temp)
   }
 
   // 滑鼠按下為起點
@@ -55,13 +53,15 @@ const draw = function (){
   }
   this.undo = () => {
     let lastDraw  = new Image()
-    if (step > 0) {
+    if (step >= 0) {
       step--
       lastDraw.src = drawTemp[step]
-      jsImg.src = drawTemp[step]
       ctx.beginPath();
       ctx.clearRect(0,0, 700, 500)
-      ctx.drawImage(lastDraw, 0, 0)
+      // 重新繪製圖形時，必須重新讀取
+      lastDraw.onload = () => {
+        ctx.drawImage(lastDraw, 0, 0)
+      }
     }
   }
   this.redo = () => {
@@ -69,10 +69,11 @@ const draw = function (){
     if (step < drawTemp.length - 1) {
       step++
       lastDraw.src = drawTemp[step]
-      jsImg.src = drawTemp[step]
       ctx.beginPath();
       ctx.clearRect(0,0, 700, 500)
-      ctx.drawImage(lastDraw, 0, 0)
+      lastDraw.onload = () => {
+        ctx.drawImage(lastDraw, 0, 0)
+      }
     }
   }
   this.clearAll = () => {

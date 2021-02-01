@@ -3,41 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/all.css">
   <title>JS地下城｜7F|畫版</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col border border-dark">
+      <div class="col">
         <ul class="list-unstyled d-flex justify-content-center align-items-center my-2">
           <li>
-            <button class="btn btn-link text-decoration-none text-reset">
+            <button type="button" class="js-save btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+              <span class="material-icons mx-2">
+                save
+              </span>
               SAVE
             </button>
           </li>
           <li class="mx-2">
-            <button class="js-clearAll btn btn-link text-decoration-none text-reset">
-              CLEAR ALL
+            <button type="button" class="js-clearAll btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+              <span class="material-icons mx-2">
+                crop_free
+              </span>CLEAR ALL
             </button>
           </li>
           <li class="mx-2">
-            <button class="js-undo btn btn-link text-decoration-none text-reset">
-              UNDO
+            <button type="button" class="js-undo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+              <span class="material-icons mx-2">
+                undo
+              </span>UNDO
             </button>
           </li>
           <li>
-            <button class="js-redo btn btn-link text-decoration-none text-reset">
+            <button type="button" class="js-redo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+            <span class="material-icons me-2">
+              redo
+            </span>
             REDO
-          </button></li>
+          </button>
+        </li>
         </ul>  
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
         <div class="d-flex justify-content-center">
           <canvas class="js-draw custom__canvas" width="700" height="500"></canvas>
         </div>
       </div>
     </div>
   </div>
-  <img src="" alt="" class="jsImg">
   
   <script src="js/all.js"></script>
 </body>
