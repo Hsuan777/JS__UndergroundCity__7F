@@ -2,6 +2,10 @@ const drawDisplay = document.querySelector('.js-draw');
 const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
 const drawClearAll = document.querySelector('.js-clearAll');
+const colorSelect = document.querySelector('.js-colorSelect');
+const colorType = document.querySelector('.custom__colorSelect');
+const colorSecondaryType = document.querySelector('.custom__colorSelect__secondaryType');
+const colorThirdType = document.querySelector('.custom__colorSelect__thirdType');
 
 const draw = function (){
   let startXY = []
@@ -80,8 +84,13 @@ const draw = function (){
     step = 0
     drawTemp = []
   }
-  this.selectColor = (e) => {
-    
+  this.colorSelect = (e) => {
+    let r = parseInt(e.target.value.substr(1,2), 16)
+    let g = parseInt(e.target.value.substr(3,2), 16)
+    let b = parseInt(e.target.value.substr(5,2), 16)
+    colorType.style.backgroundColor = e.target.value
+    colorSecondaryType.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.85)`
+    colorThirdType.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.75)`
   }
 }
   
@@ -90,4 +99,4 @@ drawDisplay.addEventListener('mousedown', newDraw.mouseDown)
 drawUndo.addEventListener('click', newDraw.undo)  
 drawRedo.addEventListener('click', newDraw.redo)  
 drawClearAll.addEventListener('click', newDraw.clearAll)  
-  
+colorSelect.addEventListener('change', newDraw.colorSelect)
