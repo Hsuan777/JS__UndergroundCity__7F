@@ -3,9 +3,7 @@ const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
 const drawClearAll = document.querySelector('.js-clearAll');
 const colorSelect = document.querySelector('.js-colorSelect');
-const colorFirstType = document.querySelector('.custom__colorSelect');
-const colorSecondaryType = document.querySelector('.custom__colorSelect__secondaryType');
-const colorThirdType = document.querySelector('.custom__colorSelect__thirdType');
+const colorBtns = document.querySelectorAll('.custom__colorBtn');
 const lineWidth = document.querySelector('.js-lineWidth');
 const lineWidth__value = document.querySelector('.js-lineWidth__value');
 
@@ -13,7 +11,7 @@ const draw = function (){
   let startXY = []
   let endXY = []
   let newColors = []
-  let newColor = ''
+  let newColor = '#000000'
   let lineWidth = 5 
   let drawTemp = []
   let base64Temp = ''
@@ -89,24 +87,31 @@ const draw = function (){
     let r = parseInt(e.target.value.substr(1,2), 16)
     let g = parseInt(e.target.value.substr(3,2), 16)
     let b = parseInt(e.target.value.substr(5,2), 16)
-    let secondaryType = `rgba(${r}, ${g}, ${b}, 0.75)`
-    let thridType = `rgba(${r}, ${g}, ${b}, 0.55)`
-    colorFirstType.style.backgroundColor = e.target.value
-    colorSecondaryType.style.backgroundColor = secondaryType    
-    colorThirdType.style.backgroundColor = thridType 
-    newColors.push(e.target.value, secondaryType, thridType) 
+    let secondaryColor = `rgba(${r}, ${g}, ${b}, 0.75)`
+    let thridColor = `rgba(${r}, ${g}, ${b}, 0.55)`
+    let newArray =  Array.from(colorBtns) 
+    console.log(newArray)
+    newArray[2].style.backgroundColor = e.target.value
+    newArray[3].style.backgroundColor = secondaryColor     
+    newArray[4].style.backgroundColor = thridColor  
+    newColors.push(e.target.value, secondaryColor , thridColor) 
   }
-  this.colorPen = (e) => {
-    console.dir(e.target)
+  this.drawPen = (e) => {
     switch(e.target.value){
-      case '1':
+      case 'primaryColor':
         newColor = newColors[0]
         break;
-      case '2':
+      case 'secondaryColor':
         newColor = newColors[1]
         break;
-      case '3':
+      case 'thirdColor':
         newColor = newColors[2]
+        break;
+      case 'white':
+        newColor = '#ffffff'
+        break;
+      case 'dark':
+        newColor = '#000000'
         break;
     }
   }
@@ -122,7 +127,7 @@ drawUndo.addEventListener('click', newDraw.undo)
 drawRedo.addEventListener('click', newDraw.redo)  
 drawClearAll.addEventListener('click', newDraw.clearAll)  
 colorSelect.addEventListener('change', newDraw.colorSelect)
-colorFirstType.addEventListener('click', newDraw.colorPen)
-colorSecondaryType.addEventListener('click', newDraw.colorPen)
-colorThirdType .addEventListener('click', newDraw.colorPen)
+colorBtns.forEach( item => {
+  item.addEventListener('click', newDraw.drawPen)
+})
 lineWidth.addEventListener('change', newDraw.range)

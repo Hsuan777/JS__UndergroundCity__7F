@@ -5,14 +5,8 @@
   &__colorBtn {
     width: 48px;
     height: 48px;
-  }
-  &__colorSelect {
-    background-color: #e70f0f;
-    &__secondaryType {
-      background-color: darken(#e70f0f, 15%) 
-    }
-    &__thirdType {
-      background-color: darken(#e70f0f, 25%) 
+    &--active{
+      background-color: red;
     }
   }
 }
