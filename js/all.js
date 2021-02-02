@@ -3,14 +3,15 @@ const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
 const drawClearAll = document.querySelector('.js-clearAll');
 const colorSelect = document.querySelector('.js-colorSelect');
-const colorType = document.querySelector('.custom__colorSelect');
+const colorFirstType = document.querySelector('.custom__colorSelect');
 const colorSecondaryType = document.querySelector('.custom__colorSelect__secondaryType');
 const colorThirdType = document.querySelector('.custom__colorSelect__thirdType');
 
 const draw = function (){
   let startXY = []
   let endXY = []
-  let colors = []
+  let newColors = []
+  let newColor = ''
   let linewidth = []
   let drawTemp = []
   let base64Temp = ''
@@ -23,7 +24,7 @@ const draw = function (){
       ctx.beginPath();
       ctx.moveTo(startXY[0], startXY[1]);
       ctx.lineTo(endXY[0], endXY[1]);
-      ctx.strokeStyle = '#ffa500'
+      ctx.strokeStyle = newColor
       ctx.lineWidth = 5
       ctx.stroke(); 
       base64Temp = drawDisplay.toDataURL();
@@ -88,9 +89,27 @@ const draw = function (){
     let r = parseInt(e.target.value.substr(1,2), 16)
     let g = parseInt(e.target.value.substr(3,2), 16)
     let b = parseInt(e.target.value.substr(5,2), 16)
-    colorType.style.backgroundColor = e.target.value
-    colorSecondaryType.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.85)`
-    colorThirdType.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.75)`
+    let secondaryType = `rgba(${r}, ${g}, ${b}, 0.75)`
+    let thridType = `rgba(${r}, ${g}, ${b}, 0.55)`
+    colorFirstType.style.backgroundColor = e.target.value
+    colorSecondaryType.style.backgroundColor = secondaryType    
+    colorThirdType.style.backgroundColor = thridType 
+    newColors.push(e.target.value, secondaryType, thridType) 
+  }
+  this.colorPen = (e) => {
+    console.dir(e.target)
+    switch(e.target.value){
+      case '1':
+        newColor = newColors[0]
+        break;
+      case '2':
+        newColor = newColors[1]
+        break;
+      case '3':
+        newColor = newColors[2]
+        break;
+      
+    }
   }
 }
   
@@ -100,3 +119,6 @@ drawUndo.addEventListener('click', newDraw.undo)
 drawRedo.addEventListener('click', newDraw.redo)  
 drawClearAll.addEventListener('click', newDraw.clearAll)  
 colorSelect.addEventListener('change', newDraw.colorSelect)
+colorFirstType.addEventListener('click', newDraw.colorPen)
+colorSecondaryType.addEventListener('click', newDraw.colorPen)
+colorThirdType .addEventListener('click', newDraw.colorPen)
