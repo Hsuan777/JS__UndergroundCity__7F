@@ -6,13 +6,15 @@ const colorSelect = document.querySelector('.js-colorSelect');
 const colorFirstType = document.querySelector('.custom__colorSelect');
 const colorSecondaryType = document.querySelector('.custom__colorSelect__secondaryType');
 const colorThirdType = document.querySelector('.custom__colorSelect__thirdType');
+const lineWidth = document.querySelector('.js-lineWidth');
+const lineWidth__value = document.querySelector('.js-lineWidth__value');
 
 const draw = function (){
   let startXY = []
   let endXY = []
   let newColors = []
   let newColor = ''
-  let linewidth = []
+  let lineWidth = 5 
   let drawTemp = []
   let base64Temp = ''
   let step = -1
@@ -25,7 +27,7 @@ const draw = function (){
       ctx.moveTo(startXY[0], startXY[1]);
       ctx.lineTo(endXY[0], endXY[1]);
       ctx.strokeStyle = newColor
-      ctx.lineWidth = 5
+      ctx.lineWidth = lineWidth 
       ctx.stroke(); 
       base64Temp = drawDisplay.toDataURL();
     }
@@ -36,7 +38,6 @@ const draw = function (){
     startXY = [e.offsetX, e.offsetY]
     vm.canvas()
   }
-
   // 滑鼠放開為終點
   this.mouseUp = () => {
     endXY = []
@@ -48,7 +49,6 @@ const draw = function (){
     }
     drawTemp.push(base64Temp)
   }
-
   // 滑鼠按下為起點
   this.mouseDown = (e) => {
     startXY = []
@@ -108,8 +108,11 @@ const draw = function (){
       case '3':
         newColor = newColors[2]
         break;
-      
     }
+  }
+  this.range = (e) => {
+    lineWidth__value.textContent = e.target.value
+    lineWidth = e.target.value
   }
 }
   
@@ -122,3 +125,4 @@ colorSelect.addEventListener('change', newDraw.colorSelect)
 colorFirstType.addEventListener('click', newDraw.colorPen)
 colorSecondaryType.addEventListener('click', newDraw.colorPen)
 colorThirdType .addEventListener('click', newDraw.colorPen)
+lineWidth.addEventListener('change', newDraw.range)
