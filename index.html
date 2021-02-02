@@ -9,9 +9,9 @@
 </head>
 <body>
   <div class="container-fluid pb-0">
-    <div class="row custom__collapse">
+    <div class="row">
       <div class="col">
-        <ul class="custom__collapse list-unstyled d-flex justify-content-center align-items-center">
+        <ul class="js-nav custom__collapse list-unstyled d-flex justify-content-center align-items-center">
           <li>
             <button type="button" class="js-save btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
               <span class="material-icons mx-2">
@@ -44,11 +44,9 @@
         </li>
         </ul>  
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn btn-white border-none mt-n3">
-            <span class="custom__collapse__btn material-icons h3">
-              arrow_drop_down
-            </span>
-          </button>
+          <span class="js-nav__btn custom__collapse__btn material-icons p-2">
+            arrow_drop_up
+          </span>
         </div>
       </div>
     </div>
@@ -63,27 +61,33 @@
       <div class="container my-3">
         <div class="row">
           <div class="col">
-            <ul class="list-unstyled ml-0 mb-0 bg-white d-flex justify-content-center align-items-center">
-              <li>
-                <span class="material-icons">brush</span>
-                <input type="color" class="js-colorSelect" value="#14C81A">
-              </li>
-              <li class="fw-bolder mx-4 d-flex flex-column align-items-center">
-                <input type="range" class="js-lineWidth mb-3 w-75" min="1" max="10">
-                <p class="mb-0">
-                  SIZE : 
-                  <span class="js-lineWidth__value mx-1 bg-light p-1 rounded-circle">5</span> 
-                  px
-                </p> 
-              </li>
-              <li class="fw-bolder d-flex align-items-center">
-                <span>COLOR :</span> 
-                <button type="button" value="white" class="custom__colorBtn border rounded-circle bg-white mx-2"></button>
-                <button type="button" value="dark" class="custom__colorBtn border rounded-circle bg-dark mx-2"></button>
-                <button type="button" value="primaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-                <button type="button" value="secondaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-                <button type="button" value="thirdColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-              </li>
+            <div class="d-flex flex-column align-items-center">
+              <ul class="js-tool custom__collapse custom__collapse__tool list-unstyled ml-0 mb-0 py-2 w-50 bg-white d-flex justify-content-center align-items-center">
+                <li>
+                  <span class="material-icons">brush</span>
+                  <input type="color" class="js-colorSelect" value="#14C81A">
+                </li>
+                <li class="fw-bolder mx-4 d-flex flex-column align-items-center">
+                  <input type="range" class="js-lineWidth mb-3 w-75" min="1" max="10">
+                  <p class="mb-0">
+                    SIZE : 
+                    <span class="js-lineWidth__value mx-1 bg-light p-1 rounded-circle">5</span> 
+                    px
+                  </p> 
+                </li>
+                <li class="fw-bolder d-flex align-items-center">
+                  <span>COLOR :</span> 
+                  <button type="button" value="white" class="custom__colorBtn border rounded-circle bg-white mx-2"></button>
+                  <button type="button" value="dark" class="custom__colorBtn border rounded-circle bg-dark mx-2"></button>
+                  <button type="button" value="primaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
+                  <button type="button" value="secondaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
+                  <button type="button" value="thirdColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
+                </li>
+              </ul>
+              <span class="js-tool__btn custom__collapse__btn material-icons p-2">
+                brush
+              </span>
+            </div>
         </div>
       </div>
     </div>

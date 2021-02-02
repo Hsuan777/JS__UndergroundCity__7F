@@ -6,8 +6,10 @@ const colorSelect = document.querySelector('.js-colorSelect');
 const colorBtns = document.querySelectorAll('.custom__colorBtn');
 const lineWidth = document.querySelector('.js-lineWidth');
 const lineWidth__value = document.querySelector('.js-lineWidth__value');
-const collapse = document.querySelector('.custom__collapse');
-const collapse__btn = document.querySelector('.custom__collapse__btn');
+const nav = document.querySelector('.js-nav');
+const nav__btn = document.querySelector('.js-nav__btn');
+const drawTool = document.querySelector('.js-tool');
+const drawTool__btn  = document.querySelector('.js-tool__btn');
 
 const draw = function (){
   let startXY = []
@@ -145,12 +147,16 @@ colorBtns.forEach( item => {
   item.addEventListener('click', newDraw.drawPen)
 })
 lineWidth.addEventListener('change', newDraw.range)
-collapse__btn.addEventListener('click', (e) => {
-  if (e.target.textContent === 'arrow_drop_down' ) {
-    e.target.textContent = 'arrow_drop_up'
-    collapse.style.transform = 'translateY(-38px)'
-  } else {
+nav__btn.addEventListener('click', (e) => {
+  if (e.target.textContent === 'arrow_drop_up' ) {
     e.target.textContent = 'arrow_drop_down'
-    collapse.style.transform = 'translateY(0px)'
+    nav.style.transform = 'translateY(-38px)'
+  } else {
+    e.target.textContent = 'arrow_drop_up'
+    nav.style.transform = 'translateY(0px)'
   }
 }) 
+drawTool__btn.addEventListener('click', (e) => {
+  drawTool.classList.toggle('d-none')
+  drawTool.style.transform = 'scale(1)';
+})
