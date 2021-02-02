@@ -5,8 +5,13 @@
   &__colorBtn {
     width: 48px;
     height: 48px;
+    &:hover{
+      height: 58px; 
+      width: 58px;
+    }
     &--active{
-      background-color: red;
+      height: 58px; 
+      width: 58px;
     }
   }
 }

@@ -10845,7 +10845,13 @@ fieldset:disabled .btn {
   height: 48px;
 }
 
+.custom__colorBtn:hover {
+  height: 58px;
+  width: 58px;
+}
+
 .custom__colorBtn--active {
-  background-color: red;
+  height: 58px;
+  width: 58px;
 }
 /*# sourceMappingURL=all.css.map */

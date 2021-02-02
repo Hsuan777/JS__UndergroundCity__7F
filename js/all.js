@@ -83,20 +83,31 @@ const draw = function (){
     step = 0
     drawTemp = []
   }
-  this.colorSelect = (e) => {
-    let r = parseInt(e.target.value.substr(1,2), 16)
-    let g = parseInt(e.target.value.substr(3,2), 16)
-    let b = parseInt(e.target.value.substr(5,2), 16)
+  this.colorsInit = (color) => {
+    newColors = []
+    let r = parseInt(color.substr(1,2), 16)
+    let g = parseInt(color.substr(3,2), 16)
+    let b = parseInt(color.substr(5,2), 16)
     let secondaryColor = `rgba(${r}, ${g}, ${b}, 0.75)`
     let thridColor = `rgba(${r}, ${g}, ${b}, 0.55)`
-    let newArray =  Array.from(colorBtns) 
-    console.log(newArray)
-    newArray[2].style.backgroundColor = e.target.value
+    let newArray = Array.from(colorBtns) 
+    newArray[2].style.backgroundColor = color
     newArray[3].style.backgroundColor = secondaryColor     
     newArray[4].style.backgroundColor = thridColor  
-    newColors.push(e.target.value, secondaryColor , thridColor) 
+    newColors.push(color, secondaryColor , thridColor) 
+    colorBtns.forEach(item => {
+      item.classList.remove('custom__colorBtn--active')
+    })
+  }
+  this.colorSelect = (e) => {
+    vm.colorsInit(e.target.value)
   }
   this.drawPen = (e) => {
+    colorBtns.forEach(item => {
+      item.classList.remove('custom__colorBtn--active')
+    })
+    e.target.classList.add('custom__colorBtn--active')
+    console.dir(e.target)
     switch(e.target.value){
       case 'primaryColor':
         newColor = newColors[0]
@@ -119,6 +130,7 @@ const draw = function (){
     lineWidth__value.textContent = e.target.value
     lineWidth = e.target.value
   }
+  vm.colorsInit(colorSelect.value)
 }
   
 const newDraw = new draw()
