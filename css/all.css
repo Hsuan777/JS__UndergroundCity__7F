@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*!
  * Bootstrap v5.0.0-beta1 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -10853,5 +10854,31 @@ fieldset:disabled .btn {
 .custom__colorBtn--active {
   height: 58px;
   width: 58px;
+}
+
+input[type=range] {
+  appearance: none;
+  /* 重置預設背景拉條 */
+  height: 8px;
+  outline: none;
+  /* 避免點選會有藍線或虛線 */
+  background: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background-color: black;
+  border-radius: 8px;
+  height: 5px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  position: relative;
+  top: -7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: black;
+  pointer-events: auto;
 }
 /*# sourceMappingURL=all.css.map */

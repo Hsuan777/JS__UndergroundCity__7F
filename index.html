@@ -53,7 +53,7 @@
           <canvas class="js-draw custom__canvas" width="700" height="500"></canvas>
         </div>
       </div>
-      <div class="container">
+      <div class="container my-3">
         <div class="row">
           <div class="col">
             <ul class="list-unstyled ml-0 mb-0 bg-white d-flex justify-content-center align-items-center">
@@ -61,11 +61,13 @@
                 <span class="material-icons">brush</span>
                 <input type="color" class="js-colorSelect" value="#14C81A">
               </li>
-              <li class="fw-bolder mx-4">
-                SIZE : 
-                <span class="js-lineWidth__value mx-1 bg-light p-2 rounded-circle">5</span> 
-                px
-                <input type="range" class="js-lineWidth" min="1" max="10">
+              <li class="fw-bolder mx-4 d-flex flex-column align-items-center">
+                <input type="range" class="js-lineWidth mb-3 w-75" min="1" max="10">
+                <p class="mb-0">
+                  SIZE : 
+                  <span class="js-lineWidth__value mx-1 bg-light p-1 rounded-circle">5</span> 
+                  px
+                </p> 
               </li>
               <li class="fw-bolder d-flex align-items-center">
                 <span>COLOR :</span> 

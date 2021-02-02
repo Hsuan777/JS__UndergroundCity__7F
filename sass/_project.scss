@@ -15,3 +15,26 @@
     }
   }
 }
+input[type=range] {
+  appearance: none;    /* 重置預設背景拉條 */
+  height: 8px;
+  outline: none;       /* 避免點選會有藍線或虛線 */
+  background: none;
+  // 滑動軌道
+  &::-webkit-slider-runnable-track {
+    background-color: black; 
+    border-radius: 8px;
+    height: 5px;
+  }
+  // 滑動拉桿
+  &::-webkit-slider-thumb {
+    appearance: none;
+    position: relative;
+    top: -7px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: black;
+    pointer-events: auto
+  }
+}
