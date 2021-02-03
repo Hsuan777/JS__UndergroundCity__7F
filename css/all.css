@@ -10841,13 +10841,9 @@ fieldset:disabled .btn {
   height: 100vh;
 }
 
-.custom__position--bottom-15 {
-  bottom: 15%;
-}
-
 .custom__canvas {
   background-color: #E8E8E8;
-  z-index: -1;
+  margin-top: -38px;
 }
 
 .custom__colorBtn {
@@ -10872,6 +10868,7 @@ fieldset:disabled .btn {
 }
 
 .custom__collapse__btn {
+  transition: 1s;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -10879,12 +10876,19 @@ fieldset:disabled .btn {
   cursor: pointer;
 }
 
+.custom__collapse__nav__btn {
+  top: 0;
+}
+
 .custom__collapse__tool {
   width: 780px;
-  bottom: 15%;
-  opacity: 0;
+  opacity: 1;
   border-radius: 30px;
   background-color: white;
+}
+
+.custom__collapse__tool__btn {
+  bottom: 10%;
 }
 
 input[type=range] {

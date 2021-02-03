@@ -64,7 +64,7 @@ const draw = function (){
       step--
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 1280, 650)
+      ctx.clearRect(0,0, 1280, 768)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
@@ -76,14 +76,14 @@ const draw = function (){
       step++
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 1280, 650)
+      ctx.clearRect(0,0, 1280, 768)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
     }
   }
   this.clearAll = () => {
-    ctx.clearRect(0,0, 1280, 650)
+    ctx.clearRect(0,0, 1280, 768)
     step = 0
     drawTemp = []
   }
@@ -151,16 +151,21 @@ nav__btn.addEventListener('click', (e) => {
   if (e.target.textContent === 'arrow_drop_up' ) {
     e.target.textContent = 'arrow_drop_down'
     nav.style.transform = 'translateY(-38px)'
+    e.target.style.top = '0px'
   } else {
     e.target.textContent = 'arrow_drop_up'
     nav.style.transform = 'translateY(0px)'
+    e.target.style.top = '38px'
   }
 }) 
 drawTool__btn.addEventListener('click', (e) => {
-  // drawTool.classList.toggle('d-none')
   if (drawTool.style.opacity === '1') {
-    drawTool.style.opacity = '0';
+    e.target.style.bottom = '5%'
+    e.target.textContent = 'brush'
+    drawTool.style.opacity = '0'
   } else {
-    drawTool.style.opacity = '1';
+    e.target.style.bottom = '10%'
+    e.target.textContent = 'arrow_drop_down'
+    drawTool.style.opacity = '1'
   }
 })
