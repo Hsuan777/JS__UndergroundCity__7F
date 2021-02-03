@@ -8,88 +8,73 @@
   <title>JS地下城｜7F|畫版</title>
 </head>
 <body>
-  <div class="container-fluid pb-0">
-    <div class="row">
-      <div class="col">
-        <ul class="js-nav custom__collapse list-unstyled d-flex justify-content-center align-items-center">
-          <li>
-            <button type="button" class="js-save btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
-              <span class="material-icons mx-2">
-                save
-              </span>
-              SAVE
-            </button>
-          </li>
-          <li class="mx-2">
-            <button type="button" class="js-clearAll btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
-              <span class="material-icons mx-2">
-                crop_free
-              </span>CLEAR ALL
-            </button>
-          </li>
-          <li class="mx-2">
-            <button type="button" class="js-undo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
-              <span class="material-icons mx-2">
-                undo
-              </span>UNDO
-            </button>
-          </li>
-          <li>
-            <button type="button" class="js-redo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
-            <span class="material-icons me-2">
-              redo
+  <div class="custom__fluid container-fluid position-relative pb-0">
+    <nav class="js-nav custom__collapse d-flex flex-column align-items-center">
+      <ul class="list-unstyled d-flex align-items-center mb-0">
+        <li>
+          <button type="button" class="js-save btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+            <span class="material-icons mx-2">
+              save
             </span>
-            REDO
+            SAVE
           </button>
         </li>
-        </ul>  
-        <div class="d-flex justify-content-center">
-          <span class="js-nav__btn custom__collapse__btn material-icons p-2">
-            arrow_drop_up
+        <li class="mx-2">
+          <button type="button" class="js-clearAll btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+            <span class="material-icons mx-2">
+              crop_free
+            </span>CLEAR ALL
+          </button>
+        </li>
+        <li class="mx-2">
+          <button type="button" class="js-undo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+            <span class="material-icons mx-2">
+              undo
+            </span>UNDO
+          </button>
+        </li>
+        <li>
+          <button type="button" class="js-redo btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
+          <span class="material-icons me-2">
+            redo
           </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid mb-3">
-    <div class="row">
-      <div class="col">
-        <div class="d-flex justify-content-center">
-          <canvas class="js-draw custom__canvas" width="700" height="500"></canvas>
-        </div>
-      </div>
-      <div class="container my-3">
-        <div class="row">
-          <div class="col">
-            <div class="d-flex flex-column align-items-center">
-              <ul class="js-tool custom__collapse custom__collapse__tool list-unstyled ml-0 mb-0 py-2 w-50 bg-white d-flex justify-content-center align-items-center">
-                <li>
-                  <span class="material-icons">brush</span>
-                  <input type="color" class="js-colorSelect" value="#14C81A">
-                </li>
-                <li class="fw-bolder mx-4 d-flex flex-column align-items-center">
-                  <input type="range" class="js-lineWidth mb-3 w-75" min="1" max="10">
-                  <p class="mb-0">
-                    SIZE : 
-                    <span class="js-lineWidth__value mx-1 bg-light p-1 rounded-circle">5</span> 
-                    px
-                  </p> 
-                </li>
-                <li class="fw-bolder d-flex align-items-center">
-                  <span>COLOR :</span> 
-                  <button type="button" value="white" class="custom__colorBtn border rounded-circle bg-white mx-2"></button>
-                  <button type="button" value="dark" class="custom__colorBtn border rounded-circle bg-dark mx-2"></button>
-                  <button type="button" value="primaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-                  <button type="button" value="secondaryColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-                  <button type="button" value="thirdColor" class="custom__colorBtn border  rounded-circle mx-2"></button>
-                </li>
-              </ul>
-              <span class="js-tool__btn custom__collapse__btn material-icons p-2">
-                brush
-              </span>
-            </div>
-        </div>
-      </div>
+          REDO
+          </button>
+        </li>
+      </ul>  
+      <span class="js-nav__btn custom__collapse__btn material-icons p-3">
+        arrow_drop_up
+      </span>
+    </nav>
+    <canvas class="js-draw custom__canvas position-absolute top-0 start-50 translate-middle-x" width="1280" height="650"></canvas>
+    <div class="custom__position--bottom-15 position-absolute start-50 translate-middle-x">
+      <nav class="d-flex flex-column align-items-center">
+        <span class="js-tool__btn custom__collapse__btn material-icons p-2 text-center">
+          brush
+        </span>
+        <ul class="js-tool custom__collapse custom__collapse__tool list-unstyled ml-0 mb-0 py-2 bg-white d-flex justify-content-end align-items-center">
+          <li class="w-25 d-flex justify-content-end">
+            <span class="material-icons me-2">brush</span>
+            <input type="color" class="js-colorSelect" value="#14C81A">
+          </li>
+          <li class="fw-bolder mx-4 d-flex flex-column align-items-center">
+            <input type="range" class="js-lineWidth mb-3 w-75" min="1" max="10">
+            <p class="mb-0">
+              SIZE : 
+              <span class="js-lineWidth__value mx-1 bg-light p-1 rounded-circle">5</span> 
+              px
+            </p> 
+          </li>
+          <li class="fw-bolder d-flex align-items-center w-75">
+            <span>COLOR :</span> 
+            <button type="button" value="white" class="custom__colorBtn border rounded-circle bg-white mx-2"></button>
+            <button type="button" value="dark" class="custom__colorBtn border rounded-circle bg-dark mx-2"></button>
+            <button type="button" value="primaryColor" class="custom__colorBtn border rounded-circle mx-2"></button>
+            <button type="button" value="secondaryColor" class="custom__colorBtn border rounded-circle mx-2"></button>
+            <button type="button" value="thirdColor" class="custom__colorBtn border rounded-circle"></button>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
   

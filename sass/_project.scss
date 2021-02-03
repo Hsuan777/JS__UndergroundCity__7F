@@ -1,31 +1,45 @@
 .custom {
+  &__fluid {
+    height: 100vh;
+  }
+  &__position {
+    &--bottom-15 {
+      bottom: 15%;
+    }
+  }
   &__canvas {
     background-color: #E8E8E8;
+    z-index: -1;
   }
   &__colorBtn {
     width: 48px;
     height: 48px;
+    transition: 0.3s;
     &:hover{
-      height: 58px; 
-      width: 58px;
+      height: 35px; 
+      width: 35px;
     }
     &--active{
-      height: 58px; 
-      width: 58px;
+      height: 35px; 
+      width: 35px;
     }
   }
   &__collapse {
     transition: 1s;
+    z-index: 9;
     &__btn {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: white;
+      background-color: transparent;
+      cursor: pointer;
     }
     &__tool {
+      width: 780px;
+      bottom: 15%;
+      opacity: 0;
       border-radius: 30px;
       background-color: white;
-      box-shadow: 0px 4px 16px #00000029;
     }
   }
 }
@@ -44,7 +58,7 @@ input[type=range] {
   &::-webkit-slider-thumb {
     appearance: none;
     position: relative;
-    top: -7px;
+    top: -6px;
     width: 16px;
     height: 16px;
     border-radius: 50%;

@@ -64,7 +64,7 @@ const draw = function (){
       step--
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 700, 500)
+      ctx.clearRect(0,0, 1280, 650)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
@@ -76,14 +76,14 @@ const draw = function (){
       step++
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 700, 500)
+      ctx.clearRect(0,0, 1280, 650)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
     }
   }
   this.clearAll = () => {
-    ctx.clearRect(0,0, 700, 500)
+    ctx.clearRect(0,0, 1280, 650)
     step = 0
     drawTemp = []
   }
@@ -157,6 +157,10 @@ nav__btn.addEventListener('click', (e) => {
   }
 }) 
 drawTool__btn.addEventListener('click', (e) => {
-  drawTool.classList.toggle('d-none')
-  drawTool.style.transform = 'scale(1)';
+  // drawTool.classList.toggle('d-none')
+  if (drawTool.style.opacity === '1') {
+    drawTool.style.opacity = '0';
+  } else {
+    drawTool.style.opacity = '1';
+  }
 })
