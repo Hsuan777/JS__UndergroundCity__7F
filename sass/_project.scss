@@ -29,17 +29,22 @@
       border-radius: 50%;
       background-color: transparent;
       cursor: pointer;
+      z-index: 9;
     }
     &__nav {
+      transform: translateY(-38px);
       &__btn {
         top: 0;
       }
     }
     &__tool {
-      width: 780px;
+      width: 730px;
       opacity: 1;
       border-radius: 30px;
       background-color: white;
+      &__position {
+        bottom: 0;
+      }
       &__btn {
         bottom: 10%;
       }

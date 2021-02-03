@@ -163,9 +163,11 @@ drawTool__btn.addEventListener('click', (e) => {
     e.target.style.bottom = '5%'
     e.target.textContent = 'brush'
     drawTool.style.opacity = '0'
+    drawTool.classList.add('d-none')
   } else {
     e.target.style.bottom = '10%'
     e.target.textContent = 'arrow_drop_down'
     drawTool.style.opacity = '1'
+    drawTool.classList.remove('d-none')
   }
 })
