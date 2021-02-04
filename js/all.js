@@ -13,17 +13,27 @@ const drawTool = document.querySelector('.js-tool');
 const drawTool__btn  = document.querySelector('.js-tool__btn');
 
 const draw = function (){
+  // 開始與結束座標 [x 軸, y 軸]
   let startXY = []
   let endXY = []
+  // 畫筆顏色暫存 [所選顏色，淺, 更淺]
   let newColors = []
-  let newColor = '#000000'
-  let lineWidth = 5 
+  // 所選顏色
+  let newColor = ''
+  // 畫筆粗細，預設為 5
+  let lineWidth = 5
+  // 畫版圖案暫存，[第一筆, 第二筆, 第三筆, ...] 
   let drawTemp = []
+  // base64 暫存圖檔之字串
   let base64Temp = ''
+  // 畫筆步驟，當畫下第一筆後，讓數值與陣列索引相同
+  // 第一筆為暫存圖檔之陣列[0]
   let step = -1
-  let vm = this 
+  let vm = this
+  // canvas 繪製使用 '2d' 
   let ctx = drawDisplay.getContext('2d');
   
+  // 繪製圖樣
   this.canvas = () => {
     if (drawDisplay.getContext){
       ctx.beginPath();
@@ -91,8 +101,10 @@ const draw = function (){
     step = 0
     drawTemp = []
   }
+  // 畫筆顏色初始化，顏色依照相近色顯示
   this.colorsInit = (color) => {
     newColors = []
+    // 將 hex 格式轉成 rgb 格式
     let r = parseInt(color.substr(1,2), 16)
     let g = parseInt(color.substr(3,2), 16)
     let b = parseInt(color.substr(5,2), 16)
@@ -107,15 +119,16 @@ const draw = function (){
       item.classList.remove('custom__colorBtn--active')
     })
   }
+  // 顏色選擇後，初始化畫筆顏色
   this.colorSelect = (e) => {
     vm.colorsInit(e.target.value)
   }
+  // 選擇畫筆顏色與選擇時效果
   this.drawPen = (e) => {
     colorBtns.forEach(item => {
       item.classList.remove('custom__colorBtn--active')
     })
     e.target.classList.add('custom__colorBtn--active')
-    console.dir(e.target)
     switch(e.target.value){
       case 'primaryColor':
         newColor = newColors[0]
@@ -134,6 +147,7 @@ const draw = function (){
         break;
     }
   }
+  // 更改畫筆粗細
   this.range = (e) => {
     lineWidth__value.textContent = e.target.value
     lineWidth = e.target.value
@@ -143,15 +157,21 @@ const draw = function (){
   
 const newDraw = new draw()
 drawDisplay.addEventListener('mousedown', newDraw.mouseDown)  
+
+/* 畫版功能列 */
 drawSave .addEventListener('click', newDraw.save)  
 drawUndo.addEventListener('click', newDraw.undo)  
 drawRedo.addEventListener('click', newDraw.redo)  
 drawClearAll.addEventListener('click', newDraw.clearAll)  
+
+/* 畫版工具列 */
 colorSelect.addEventListener('change', newDraw.colorSelect)
 colorBtns.forEach( item => {
   item.addEventListener('click', newDraw.drawPen)
 })
 lineWidth.addEventListener('change', newDraw.range)
+
+/* 摺疊開關 */
 nav__btn.addEventListener('click', (e) => {
   if (e.target.textContent === 'arrow_drop_up' ) {
     e.target.textContent = 'arrow_drop_down'
