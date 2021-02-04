@@ -1,4 +1,5 @@
 const drawDisplay = document.querySelector('.js-draw');
+const drawSave = document.querySelector('.js-save');
 const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
 const drawClearAll = document.querySelector('.js-clearAll');
@@ -70,6 +71,9 @@ const draw = function (){
       }
     }
   }
+  this.save = () => {
+    drawSave.href = base64Temp 
+  }
   this.redo = () => {
     let lastDraw  = new Image()
     if (step < drawTemp.length - 1) {
@@ -139,6 +143,7 @@ const draw = function (){
   
 const newDraw = new draw()
 drawDisplay.addEventListener('mousedown', newDraw.mouseDown)  
+drawSave .addEventListener('click', newDraw.save)  
 drawUndo.addEventListener('click', newDraw.undo)  
 drawRedo.addEventListener('click', newDraw.redo)  
 drawClearAll.addEventListener('click', newDraw.clearAll)  
