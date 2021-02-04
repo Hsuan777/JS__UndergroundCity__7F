@@ -10,8 +10,8 @@
 <body>
   <div class="custom__fluid container-fluid position-relative pb-0">
     <!-- 功能列 -->
-    <nav class="js-nav custom__collapse custom__collapse__nav d-flex justify-content-center bg-white">
-      <ul class="list-unstyled d-flex align-items-center mb-0">
+    <nav class="js-nav custom__collapse custom__collapse__nav position-absolute start-50 translate-middle-x bg-white">
+      <ul class="list-unstyled d-flex justify-content-center align-items-center mb-0">
         <li>
           <a href="" download='yourCanvas' class="js-save btn btn-link d-flex align-items-center text-decoration-none text-reset fw-bolder">
             <span class="material-icons mx-2">
@@ -45,21 +45,26 @@
       </ul>  
     </nav>
     <!-- 功能列開關 -->
-    <span class="js-nav__btn custom__collapse__btn custom__collapse__nav__btn material-icons d-block position-absolute start-50 translate-middle-x p-2">
-      arrow_drop_down
-    </span>
+    <span class="js-nav__btn custom__collapse__btn custom__collapse__nav__btn material-icons d-block position-absolute start-50 translate-middle-x p-2">arrow_drop_down</span>
     <!-- 畫版 -->
     <div class="d-flex justify-content-center">
-      <canvas class="js-draw custom__canvas" width="1280" height="768"></canvas>
+      <canvas class="js-draw3by3 custom__canvas" width="1280" height="768"></canvas>
+      <canvas class="js-draw custom__canvas position-absolute top-0 bottom-0 start-0 end-0" width="1280" height="768"></canvas>
     </div>
     <!-- 工具列開關 -->
-    <span class="js-tool__btn custom__collapse__btn custom__collapse__tool__btn material-icons d-block p-2 text-center position-absolute start-50 translate-middle-x">
-      arrow_drop_down 
-    </span>
+    <span class="js-tool__btn custom__collapse__btn custom__collapse__tool__btn material-icons d-block p-3 ext-center position-absolute start-50 translate-middle-x">arrow_drop_down</span>
     <!-- 工具列 -->
-    <nav class="js-tool custom__collapse position-absolute custom__collapse__tool__position start-50 translate-middle-x">
+    <nav class="js-tool custom__collapse custom__collapse__tool__position position-absolute start-50 translate-middle-x">
       <ul class="custom__collapse__tool list-unstyled ml-0 mb-0 py-2 bg-white d-flex align-items-center">
-        <li class="w-25 d-flex justify-content-end">
+        <li class="mx-3">
+          <label for="3by3" class="d-flex align-items-center">
+            <span class="material-icons">
+              tag
+            </span>
+            <input type="checkbox" name="" id="3by3">
+          </label>
+        </li>
+        <li class="d-flex justify-content-end">
           <span class="material-icons me-2">brush</span>
           <input type="color" class="js-colorSelect" value="#14C81A">
         </li>
@@ -71,7 +76,7 @@
             px
           </p> 
         </li>
-        <li class="fw-bolder d-flex align-items-center w-75">
+        <li class="fw-bolder d-flex align-items-center">
           <span>COLOR :</span> 
           <button type="button" value="white" class="custom__colorBtn border rounded-circle bg-white mx-2"></button>
           <button type="button" value="dark" class="custom__colorBtn border rounded-circle bg-dark mx-2"></button>

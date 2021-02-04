@@ -3,8 +3,7 @@
     height: 100vh;
   }
   &__canvas {
-    background-color: #E8E8E8;
-    margin-top: -38px;
+    background-color:#E8E8E8;
   }
   &__colorBtn {
     width: 48px;
@@ -32,21 +31,21 @@
       z-index: 9;
     }
     &__nav {
-      transform: translateY(-38px);
+      top: -38px;
+      border-radius: 30px;
       &__btn {
         top: 0;
       }
     }
     &__tool {
       width: 730px;
-      opacity: 1;
       border-radius: 30px;
       background-color: white;
       &__position {
-        bottom: 0;
+        bottom: 3%;
       }
       &__btn {
-        bottom: 10%;
+        bottom: 13%;
       }
     }
   }

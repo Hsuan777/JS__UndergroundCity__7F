@@ -1,4 +1,5 @@
 const drawDisplay = document.querySelector('.js-draw');
+const draw3by3  = document.querySelector('.js-draw3by3');
 const drawSave = document.querySelector('.js-save');
 const drawUndo = document.querySelector('.js-undo');
 const drawRedo = document.querySelector('.js-redo');
@@ -11,6 +12,7 @@ const nav = document.querySelector('.js-nav');
 const nav__btn = document.querySelector('.js-nav__btn');
 const drawTool = document.querySelector('.js-tool');
 const drawTool__btn  = document.querySelector('.js-tool__btn');
+const checkBox3by3 = document.getElementById('3by3');
 
 const draw = function (){
   // 開始與結束座標 [x 軸, y 軸]
@@ -32,6 +34,7 @@ const draw = function (){
   let vm = this
   // canvas 繪製使用 '2d' 
   let ctx = drawDisplay.getContext('2d');
+  let ctx3by3 = draw3by3.getContext('2d');
   let ctxWidth = 1280
   let ctxHeight = 768
   
@@ -43,10 +46,37 @@ const draw = function (){
       ctx.lineTo(endXY[0], endXY[1]);
       ctx.strokeStyle = newColor
       ctx.lineWidth = lineWidth 
-      ctx.width = ctxWidth  
-      ctx.height = ctxHeight  
       ctx.stroke(); 
       base64Temp = drawDisplay.toDataURL();
+    }
+  }
+  this.canvas3by3 = (e) => {
+    if (draw3by3.getContext && e.target.checked === true) {
+      // 橫向兩條
+      ctx3by3.beginPath();
+      ctx3by3.moveTo(0, ctxHeight*0.33)
+      ctx3by3.lineTo(ctxWidth, ctxHeight*0.33)
+      ctx3by3.strokeStyle = '#aaaaaa'
+      ctx3by3.lineWidth = 1
+      ctx3by3.stroke(); 
+      ctx3by3.beginPath();
+      ctx3by3.moveTo(0, ctxHeight*0.66)
+      ctx3by3.lineTo(ctxWidth, ctxHeight*0.66)
+      ctx3by3.stroke(); 
+      // 直向兩條
+      ctx3by3.beginPath();
+      ctx3by3.moveTo(ctxWidth*0.33, 0)
+      ctx3by3.lineTo(ctxWidth*0.33, ctxHeight)
+      ctx3by3.stroke(); 
+      ctx3by3.beginPath();
+      ctx3by3.moveTo(ctxWidth*0.66, 0)
+      ctx3by3.lineTo(ctxWidth*0.66, ctxHeight)
+      ctx3by3.stroke(); 
+      ctx3by3.strokeStyle = '#000000'
+      ctx3by3.lineWidth = 5
+      drawDisplay.style.backgroundColor = 'transparent'
+    } else {
+      drawDisplay.style.backgroundColor = '#E8E8E8'
     }
   }
   // 滑鼠經過的所有座標
@@ -161,9 +191,13 @@ const draw = function (){
     ctxWidth =  window.innerWidth
     ctxHeight =  window.innerHeight
     drawDisplay.width =  window.innerWidth
+    draw3by3.width =  window.innerWidth
     drawDisplay.height =  window.innerHeight
+    draw3by3.height =  window.innerHeight
+    checkBox3by3.checked = false
   }
   vm.colorsInit(colorSelect.value)
+  vm.resize()
 }
   
 const newDraw = new draw()
@@ -181,27 +215,29 @@ colorBtns.forEach( item => {
   item.addEventListener('click', newDraw.drawPen)
 })
 lineWidth.addEventListener('change', newDraw.range)
+checkBox3by3.addEventListener('change', newDraw.canvas3by3)
 
 /* 摺疊開關 */
 nav__btn.addEventListener('click', (e) => {
   if (e.target.textContent === 'arrow_drop_up' ) {
     e.target.textContent = 'arrow_drop_down'
-    nav.style.transform = 'translateY(-38px)'
+    nav.style.top = '-38px'
     e.target.style.top = '0px'
   } else {
     e.target.textContent = 'arrow_drop_up'
-    nav.style.transform = 'translateY(0px)'
+    nav.style.top = '0'
     e.target.style.top = '38px'
   }
 }) 
 drawTool__btn.addEventListener('click', (e) => {
-  if (drawTool.style.opacity === '1') {
-    e.target.style.bottom = '5%'
+  console.log(e.target.textContent)
+  if (e.target.textContent === 'arrow_drop_down') {
+    e.target.style.bottom = '8%'
     e.target.textContent = 'brush'
     drawTool.style.opacity = '0'
     drawTool.classList.add('d-none')
   } else {
-    e.target.style.bottom = '10%'
+    e.target.style.bottom = '13%'
     e.target.textContent = 'arrow_drop_down'
     drawTool.style.opacity = '1'
     drawTool.classList.remove('d-none')
