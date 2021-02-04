@@ -32,6 +32,8 @@ const draw = function (){
   let vm = this
   // canvas 繪製使用 '2d' 
   let ctx = drawDisplay.getContext('2d');
+  let ctxWidth = 1280
+  let ctxHeight = 768
   
   // 繪製圖樣
   this.canvas = () => {
@@ -41,6 +43,8 @@ const draw = function (){
       ctx.lineTo(endXY[0], endXY[1]);
       ctx.strokeStyle = newColor
       ctx.lineWidth = lineWidth 
+      ctx.width = ctxWidth  
+      ctx.height = ctxHeight  
       ctx.stroke(); 
       base64Temp = drawDisplay.toDataURL();
     }
@@ -75,7 +79,7 @@ const draw = function (){
       step--
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 1280, 768)
+      ctx.clearRect(0,0, ctxWidth, ctxHeight)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
@@ -90,14 +94,14 @@ const draw = function (){
       step++
       lastDraw.src = drawTemp[step]
       ctx.beginPath();
-      ctx.clearRect(0,0, 1280, 768)
+      ctx.clearRect(0,0, ctxWidth, ctxHeight)
       lastDraw.onload = () => {
         ctx.drawImage(lastDraw, 0, 0)
       }
     }
   }
   this.clearAll = () => {
-    ctx.clearRect(0,0, 1280, 768)
+    ctx.clearRect(0,0, ctxWidth, ctxHeight)
     step = 0
     drawTemp = []
   }
@@ -152,6 +156,13 @@ const draw = function (){
     lineWidth__value.textContent = e.target.value
     lineWidth = e.target.value
   }
+  // 重置畫版大小
+  this.resize = () => {
+    ctxWidth =  window.innerWidth
+    ctxHeight =  window.innerHeight
+    drawDisplay.width =  window.innerWidth
+    drawDisplay.height =  window.innerHeight
+  }
   vm.colorsInit(colorSelect.value)
 }
   
@@ -196,3 +207,4 @@ drawTool__btn.addEventListener('click', (e) => {
     drawTool.classList.remove('d-none')
   }
 })
+window.addEventListener('resize', newDraw.resize)
