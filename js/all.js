@@ -143,12 +143,12 @@ const draw = function (){
     let g = parseInt(color.substr(3,2), 16)
     let b = parseInt(color.substr(5,2), 16)
     let secondaryColor = `rgba(${r}, ${g}, ${b}, 0.75)`
-    let thridColor = `rgba(${r}, ${g}, ${b}, 0.55)`
+    let thirdColor = `rgba(${r}, ${g}, ${b}, 0.55)`
     let newArray = Array.from(colorBtns) 
     newArray[2].style.backgroundColor = color
     newArray[3].style.backgroundColor = secondaryColor     
-    newArray[4].style.backgroundColor = thridColor  
-    newColors.push(color, secondaryColor , thridColor) 
+    newArray[4].style.backgroundColor = thirdColor  
+    newColors.push(color, secondaryColor , thirdColor) 
     colorBtns.forEach(item => {
       item.classList.remove('custom__colorBtn--active')
     })
@@ -221,12 +221,12 @@ checkBox3by3.addEventListener('change', newDraw.canvas3by3)
 nav__btn.addEventListener('click', (e) => {
   if (e.target.textContent === 'arrow_drop_up' ) {
     e.target.textContent = 'arrow_drop_down'
-    nav.style.top = '-38px'
+    nav.style.top = '-47px'
     e.target.style.top = '0px'
   } else {
     e.target.textContent = 'arrow_drop_up'
     nav.style.top = '0'
-    e.target.style.top = '38px'
+    e.target.style.top = '47px'
   }
 }) 
 drawTool__btn.addEventListener('click', (e) => {
